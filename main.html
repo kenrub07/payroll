@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>GRC Payroll Program</title>
+
+  <style>
+
+    body {
+
+      background-color: #8df58b;
+
+      font-family: Arial, sans-serif;
+
+      text-align: center;
+
+      padding: 40px;
+
+    }
+
+    .container {
+
+      background-color: #b2f5a6;
+
+      width: 400px;
+
+      margin: auto;
+
+      padding: 20px;
+
+      border-radius: 15px;
+
+      border: 2px solid black;
+
+    }
+
+    h2 {
+
+      color: blue;
+
+      margin-bottom: 20px;
+
+    }
+
+    label {
+
+      display: block;
+
+      text-align: left;
+
+      margin: 5px 0;
+
+      font-weight: bold;
+
+    }
+
+    input {
+
+      width: 95%;
+
+      padding: 6px;
+
+      margin-bottom: 10px;
+
+      border-radius: 5px;
+
+      border: 1px solid black;
+
+    }
+
+    button {
+
+      background-color: white;
+
+      padding: 8px 20px;
+
+      font-weight: bold;
+
+      border: 1px solid black;
+
+      border-radius: 5px;
+
+      cursor: pointer;
+
+    }
+
+    button:hover {
+
+      background-color: lightgray;
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+
+  <div class="container">
+
+    <h2>GRC PAYROLL PROGRAM</h2>
+
+
+    <form id="payrollForm" onsubmit="submitForm(event)">
+
+      <label>ID NUMBER:</label>
+
+      <input type="Number" id="idNumber" required>
+
+
+      <label>LAST NAME:</label>
+
+      <input type="text" id="lastName" required>
+
+
+      <label>FIRST NAME:</label>
+
+      <input type="text" id="firstName" required>
+
+
+      <label>MIDDLE NAME:</label>
+
+      <input type="text" id="middleName" required>
+
+
+      <label>POSITION:</label>
+
+      <input type="text" id="position" required>
+
+
+      <label>RATE:</label>
+
+      <input type="number" id="rate" required min="1">
+
+
+      <label>WORK DAYS:</label>
+
+      <input type="number" id="days" required min="1">
+
+
+      <button type="submit">SUBMIT</button>
+
+    </form>
+
+  </div>
+
+
+  <script>
+
+    function submitForm(event) {
+
+      event.preventDefault(); // Prevent auto reload
+
+      
+
+      const form = document.getElementById("payrollForm");
+
+
+      // Check if form is valid
+
+      if (!form.checkValidity()) {
+
+        form.reportValidity(); // Show “Please fill out this field.”
+
+        return;
+
+      }
+
+
+      const data = {
+
+        idNumber: document.getElementById("idNumber").value,
+
+        lastName: document.getElementById("lastName").value,
+
+        firstName: document.getElementById("firstName").value,
+
+        middleName: document.getElementById("middleName").value,
+
+        position: document.getElementById("position").value,
+
+        rate: parseFloat(document.getElementById("rate").value),
+
+        days: parseFloat(document.getElementById("days").value)
+
+      };
+
+
+      localStorage.setItem("payrollData", JSON.stringify(data));
+
+      window.location.href = "display.html";
+
+    }
+
+  </script>
+
+
+</body>
+
+</html>
